@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GlowOnCall Cart - Review your selected beauty services, customize your booking, and schedule your doorstep beauty experience. Smart cart with combo suggestions and flexible timing.">
+    <title>Your Cart - GlowOnCall | Book Premium Doorstep Beauty Services</title>
+    <link rel="stylesheet" href="../css/main.css">
+  
+  <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fglowoncall2063back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.12"></script>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.2"></script>
+  </head>
+<body class="font-source text-text-primary bg-background">
+    
+    <!-- Navigation Header -->
+    <header class="fixed top-0 left-0 right-0 bg-white shadow-soft z-sticky">
+        <nav class="container-custom">
+            <div class="flex items-center justify-between py-4">
+                <!-- Logo -->
+                <a href="homepage.html" class="flex items-center space-x-3">
+                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1670ad1f0-1767987391211.png" 
+                         alt="GlowOnCall logo featuring elegant feminine silhouette in gold tones" 
+                         class="h-12 w-12 object-cover rounded-full"
+                         onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;">
+                    <span class="font-playfair text-2xl font-bold text-secondary">GlowOnCall</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="homepage.html" class="text-text-primary hover:text-accent transition-colors duration-300">Home</a>
+                    <a href="services.html" class="text-text-primary hover:text-accent transition-colors duration-300">Services</a>
+                    <a href="cart.html" class="text-accent font-semibold hover:text-accent-dark transition-colors duration-300">Cart</a>
+                    <a href="contact.html" class="text-text-primary hover:text-accent transition-colors duration-300">Contact</a>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="services.html" class="btn-secondary text-sm">Browse Services</a>
+                    <div class="relative">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1e9800c8c-1764650951315.png" alt="Shopping cart icon" class="w-6 h-6">
+                        <span id="cartBadge" class="absolute -top-2 -right-2 bg-cta text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">3</span>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-surface transition-colors duration-300">
+                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1baceeaf9-1764698072227.png" alt="Open mobile menu" class="w-6 h-6">
+                </button>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div id="mobileMenu" class="hidden md:hidden pb-4 space-y-3">
+                <a href="homepage.html" class="block py-2 text-text-primary hover:text-accent transition-colors duration-300">Home</a>
+                <a href="services.html" class="block py-2 text-text-primary hover:text-accent transition-colors duration-300">Services</a>
+                <a href="cart.html" class="block py-2 text-accent font-semibold">Cart</a>
+                <a href="contact.html" class="block py-2 text-text-primary hover:text-accent transition-colors duration-300">Contact</a>
+                <div class="pt-3">
+                    <a href="services.html" class="btn-secondary w-full text-center text-sm">Browse Services</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Progress Indicator -->
+    <section class="pt-24 pb-8 bg-white">
+        <div class="container-custom">
+            <div class="flex items-center justify-center space-x-4 md:space-x-8">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-white font-semibold">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1e47bbb75-1767094104254.png" alt="Cart step completed" class="w-6 h-6">
+                    </div>
+                    <span class="ml-2 text-sm font-medium text-accent hidden sm:inline">Cart</span>
+                </div>
+                <div class="h-0.5 w-12 md:w-24 bg-border"></div>
+                <div class="flex items-center">
+                    <div class="w-10 h-10 rounded-full bg-surface flex items-center justify-center text-text-secondary font-semibold">2</div>
+                    <span class="ml-2 text-sm font-medium text-text-secondary hidden sm:inline">Booking Details</span>
+                </div>
+                <div class="h-0.5 w-12 md:w-24 bg-border"></div>
+                <div class="flex items-center">
+                    <div class="w-10 h-10 rounded-full bg-surface flex items-center justify-center text-text-secondary font-semibold">3</div>
+                    <span class="ml-2 text-sm font-medium text-text-secondary hidden sm:inline">Payment</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Cart Section -->
+    <section class="section-padding bg-surface">
+        <div class="container-custom">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Cart Items Column -->
+                <div class="lg:col-span-2 space-y-6">
+                    <!-- Cart Header -->
+                    <div class="flex items-center justify-between mb-6">
+                        <h1 class="text-display-2 text-secondary">Your Cart</h1>
+                        <button id="clearCartBtn" class="text-error hover:text-error/80 text-sm font-medium flex items-center space-x-1 transition-colors duration-300">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_164daa11c-1767737914394.png" alt="Clear cart icon" class="w-4 h-4">
+                            <span>Clear All</span>
+                        </button>
+                    </div>
+
+                    <!-- Cart Item 1 - Radiant Glow Facial -->
+                    <div class="card animate-fade-in-up">
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <div class="relative w-full sm:w-32 h-32 rounded-lg overflow-hidden flex-shrink-0">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1a861e5eb-1764905106158.png" 
+                                     alt="Professional radiant glow facial treatment with natural products" 
+                                     class="w-full h-full object-cover"
+                                     onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;">
+                            </div>
+                            <div class="flex-grow">
+                                <div class="flex items-start justify-between mb-2">
+                                    <div>
+                                        <h3 class="text-heading-2 text-secondary mb-1">Radiant Glow Facial</h3>
+                                        <p class="text-body-sm text-text-secondary">Deep cleansing & hydration treatment</p>
+                                        <div class="flex items-center space-x-2 mt-2">
+                                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_18ff5aae3-1766516153213.png" alt="Service duration icon" class="w-4 h-4">
+                                            <span class="text-body-sm text-text-secondary">60 minutes</span>
+                                        </div>
+                                    </div>
+                                    <button class="remove-item p-2 hover:bg-surface rounded-lg transition-colors duration-300" data-item="1">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_126db2a5e-1764661445871.png" alt="Remove item from cart" class="w-5 h-5">
+                                    </button>
+                                </div>
+                                <div class="flex items-center justify-between mt-4">
+                                    <div class="flex items-center space-x-3">
+                                        <button class="quantity-btn w-8 h-8 rounded-lg border border-border hover:bg-surface flex items-center justify-center transition-colors duration-300" data-action="decrease" data-item="1">
+                                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1b9b6eaeb-1767547004154.png" alt="Decrease quantity" class="w-4 h-4">
+                                        </button>
+                                        <span class="quantity-display font-semibold text-secondary" data-item="1">1</span>
+                                        <button class="quantity-btn w-8 h-8 rounded-lg border border-border hover:bg-surface flex items-center justify-center transition-colors duration-300" data-action="increase" data-item="1">
+                                            <img src="https://images.unsplash.com/photo-1589556763333-ad818080f39e" alt="Increase quantity" class="w-4 h-4">
+                                        </button>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-heading-2 text-accent font-semibold">₹1,299</div>
+                                        <div class="text-body-sm text-text-secondary line-through">₹1,499</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cart Item 2 - Volume Lash Extensions -->
+                    <div class="card animate-fade-in-up stagger-delay-1">
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <div class="relative w-full sm:w-32 h-32 rounded-lg overflow-hidden flex-shrink-0">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_147656761-1767987392926.png" 
+                                     alt="Premium volume lash extension application by certified beautician" 
+                                     class="w-full h-full object-cover"
+                                     onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;">
+                                <div class="absolute top-2 right-2 bg-cta text-white px-2 py-1 rounded-full text-xs font-semibold">
+                                    Popular
+                                </div>
+                            </div>
+                            <div class="flex-grow">
+                                <div class="flex items-start justify-between mb-2">
+                                    <div>
+                                        <h3 class="text-heading-2 text-secondary mb-1">Volume Lash Extensions</h3>
+                                        <p class="text-body-sm text-text-secondary">Full set with premium synthetic lashes</p>
+                                        <div class="flex items-center space-x-2 mt-2">
+                                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_18ff5aae3-1766516153213.png" alt="Service duration icon" class="w-4 h-4">
+                                            <span class="text-body-sm text-text-secondary">90 minutes</span>
+                                        </div>
+                                    </div>
+                                    <button class="remove-item p-2 hover:bg-surface rounded-lg transition-colors duration-300" data-item="2">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_126db2a5e-1764661445871.png" alt="Remove item from cart" class="w-5 h-5">
+                                    </button>
+                                </div>
+                                <div class="flex items-center justify-between mt-4">
+                                    <div class="flex items-center space-x-3">
+                                        <button class="quantity-btn w-8 h-8 rounded-lg border border-border hover:bg-surface flex items-center justify-center transition-colors duration-300" data-action="decrease" data-item="2">
+                                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1b9b6eaeb-1767547004154.png" alt="Decrease quantity" class="w-4 h-4">
+                                        </button>
+                                        <span class="quantity-display font-semibold text-secondary" data-item="2">1</span>
+                                        <button class="quantity-btn w-8 h-8 rounded-lg border border-border hover:bg-surface flex items-center justify-center transition-colors duration-300" data-action="increase" data-item="2">
+                                            <img src="https://images.unsplash.com/photo-1589556763333-ad818080f39e" alt="Increase quantity" class="w-4 h-4">
+                                        </button>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-heading-2 text-accent font-semibold">₹2,499</div>
+                                        <div class="text-body-sm text-text-secondary line-through">₹2,999</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cart Item 3 - Eyebrow Threading & Tinting -->
+                    <div class="card animate-fade-in-up stagger-delay-2">
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <div class="relative w-full sm:w-32 h-32 rounded-lg overflow-hidden flex-shrink-0">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1c56e4149-1767987401286.png" 
+                                     alt="Professional eyebrow threading and tinting service for perfect brows" 
+                                     class="w-full h-full object-cover"
+                                     onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;">
+                            </div>
+                            <div class="flex-grow">
+                                <div class="flex items-start justify-between mb-2">
+                                    <div>
+                                        <h3 class="text-heading-2 text-secondary mb-1">Eyebrow Threading & Tinting</h3>
+                                        <p class="text-body-sm text-text-secondary">Perfect shape with natural tint</p>
+                                        <div class="flex items-center space-x-2 mt-2">
+                                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_18ff5aae3-1766516153213.png" alt="Service duration icon" class="w-4 h-4">
+                                            <span class="text-body-sm text-text-secondary">30 minutes</span>
+                                        </div>
+                                    </div>
+                                    <button class="remove-item p-2 hover:bg-surface rounded-lg transition-colors duration-300" data-item="3">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_126db2a5e-1764661445871.png" alt="Remove item from cart" class="w-5 h-5">
+                                    </button>
+                                </div>
+                                <div class="flex items-center justify-between mt-4">
+                                    <div class="flex items-center space-x-3">
+                                        <button class="quantity-btn w-8 h-8 rounded-lg border border-border hover:bg-surface flex items-center justify-center transition-colors duration-300" data-action="decrease" data-item="3">
+                                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1b9b6eaeb-1767547004154.png" alt="Decrease quantity" class="w-4 h-4">
+                                        </button>
+                                        <span class="quantity-display font-semibold text-secondary" data-item="3">1</span>
+                                        <button class="quantity-btn w-8 h-8 rounded-lg border border-border hover:bg-surface flex items-center justify-center transition-colors duration-300" data-action="increase" data-item="3">
+                                            <img src="https://images.unsplash.com/photo-1589556763333-ad818080f39e" alt="Increase quantity" class="w-4 h-4">
+                                        </button>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-heading-2 text-accent font-semibold">₹699</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Combo Suggestions -->
+                    <div class="card bg-accent/5 border-2 border-accent/20 animate-fade-in-up stagger-delay-3">
+                        <div class="flex items-start space-x-3 mb-4">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1bdfb810d-1767933648640.png" alt="Smart suggestion icon" class="w-6 h-6 flex-shrink-0 mt-1">
+                            <div>
+                                <h4 class="text-heading-3 text-secondary mb-2">Smart Combo Suggestion</h4>
+                                <p class="text-body-sm text-text-secondary mb-3">Add these services to complete your beauty package and save ₹500!</p>
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between p-3 bg-white rounded-lg">
+                                <div class="flex items-center space-x-3">
+                                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_13d31b5ca-1766940788202.png" 
+                                         alt="Hair spa treatment for complete beauty package" 
+                                         class="w-12 h-12 rounded-lg object-cover"
+                                         onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;">
+                                    <div>
+                                        <div class="font-semibold text-secondary text-sm">Hair Spa Treatment</div>
+                                        <div class="text-body-sm text-accent font-semibold">₹1,299</div>
+                                    </div>
+                                </div>
+                                <button class="btn-accent text-sm px-4 py-2">Add</button>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-white rounded-lg">
+                                <div class="flex items-center space-x-3">
+                                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_12069f6fe-1767987402366.png" 
+                                         alt="Luxury manicure service for complete beauty package" 
+                                         class="w-12 h-12 rounded-lg object-cover"
+                                         onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;">
+                                    <div>
+                                        <div class="font-semibold text-secondary text-sm">Luxury Manicure</div>
+                                        <div class="text-body-sm text-accent font-semibold">₹899</div>
+                                    </div>
+                                </div>
+                                <button class="btn-accent text-sm px-4 py-2">Add</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Continue Shopping -->
+                    <div class="text-center pt-4">
+                        <a href="services.html" class="link-primary text-lg font-semibold inline-flex items-center space-x-2">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_10d368b49-1765757422286.png" alt="Continue shopping icon" class="w-5 h-5">
+                            <span>Continue Shopping</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Order Summary Column -->
+                <div class="lg:col-span-1">
+                    <div class="sticky top-24 space-y-6">
+                        <!-- Booking Details Card -->
+                        <div class="card">
+                            <h3 class="text-heading-2 text-secondary mb-4">Booking Details</h3>
+                            
+                            <!-- Location Selection -->
+                            <div class="mb-4">
+                                <label class="block text-body-sm font-semibold text-secondary mb-2">Service Location</label>
+                                <div class="relative">
+                                    <input type="text" id="locationInput" placeholder="Enter your address" class="input-field pr-10">
+                                    <button class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_15ec46ce2-1766433480118.png" alt="Location pin icon" class="w-5 h-5">
+                                    </button>
+                                </div>
+                                <button class="text-accent text-sm font-medium mt-2 flex items-center space-x-1 hover:text-accent-dark transition-colors duration-300">
+                                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_147139cbf-1767712412668.png" alt="Use current location icon" class="w-4 h-4">
+                                    <span>Use Current Location</span>
+                                </button>
+                            </div>
+
+                            <!-- Date Selection -->
+                            <div class="mb-4">
+                                <label class="block text-body-sm font-semibold text-secondary mb-2">Preferred Date</label>
+                                <input type="date" id="dateInput" class="input-field" min="2026-01-10">
+                            </div>
+
+                            <!-- Time Slot Selection -->
+                            <div class="mb-4">
+                                <label class="block text-body-sm font-semibold text-secondary mb-2">Preferred Time Slot</label>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button class="time-slot px-4 py-2 rounded-lg border-2 border-border hover:border-accent hover:bg-accent/5 transition-all duration-300 text-sm font-medium text-secondary">
+                                        9:00 AM
+                                    </button>
+                                    <button class="time-slot px-4 py-2 rounded-lg border-2 border-border hover:border-accent hover:bg-accent/5 transition-all duration-300 text-sm font-medium text-secondary">
+                                        11:00 AM
+                                    </button>
+                                    <button class="time-slot px-4 py-2 rounded-lg border-2 border-accent bg-accent/5 transition-all duration-300 text-sm font-semibold text-accent">
+                                        2:00 PM
+                                    </button>
+                                    <button class="time-slot px-4 py-2 rounded-lg border-2 border-border hover:border-accent hover:bg-accent/5 transition-all duration-300 text-sm font-medium text-secondary">
+                                        4:00 PM
+                                    </button>
+                                    <button class="time-slot px-4 py-2 rounded-lg border-2 border-border hover:border-accent hover:bg-accent/5 transition-all duration-300 text-sm font-medium text-secondary">
+                                        6:00 PM
+                                    </button>
+                                    <button class="time-slot px-4 py-2 rounded-lg border-2 border-border hover:border-accent hover:bg-accent/5 transition-all duration-300 text-sm font-medium text-secondary">
+                                        8:00 PM
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Estimated Duration -->
+                            <div class="bg-surface rounded-lg p-3 mb-4">
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-text-secondary">Total Service Duration:</span>
+                                    <span class="font-semibold text-secondary">180 minutes</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm mt-2">
+                                    <span class="text-text-secondary">Estimated Completion:</span>
+                                    <span class="font-semibold text-accent">5:00 PM</span>
+                                </div>
+                            </div>
+
+                            <!-- Special Instructions -->
+                            <div class="mb-4">
+                                <label class="block text-body-sm font-semibold text-secondary mb-2">Special Instructions (Optional)</label>
+                                <textarea id="instructionsInput" rows="3" placeholder="Any specific requirements or preferences..." class="input-field resize-none"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Price Summary Card -->
+                        <div class="card">
+                            <h3 class="text-heading-2 text-secondary mb-4">Price Summary</h3>
+                            
+                            <div class="space-y-3 mb-4">
+                                <div class="flex items-center justify-between text-body-base">
+                                    <span class="text-text-secondary">Subtotal (3 items)</span>
+                                    <span class="font-semibold text-secondary">₹4,497</span>
+                                </div>
+                                <div class="flex items-center justify-between text-body-base">
+                                    <span class="text-text-secondary">Service Discount</span>
+                                    <span class="font-semibold text-accent">-₹200</span>
+                                </div>
+                                <div class="flex items-center justify-between text-body-base">
+                                    <span class="text-text-secondary">Travel Charges</span>
+                                    <span class="font-semibold text-secondary">₹99</span>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="flex items-center justify-between text-heading-2">
+                                    <span class="text-secondary">Total Amount</span>
+                                    <span class="text-accent font-bold">₹4,396</span>
+                                </div>
+                                <div class="bg-accent/10 rounded-lg p-3">
+                                    <div class="flex items-center justify-between text-sm">
+                                        <span class="text-secondary font-medium">Advance Payment (30%)</span>
+                                        <span class="font-bold text-accent">₹1,319</span>
+                                    </div>
+                                    <p class="text-xs text-text-secondary mt-1">Remaining ₹3,077 payable after service</p>
+                                </div>
+                            </div>
+
+                            <!-- Promo Code -->
+                            <div class="mb-4">
+                                <label class="block text-body-sm font-semibold text-secondary mb-2">Have a Promo Code?</label>
+                                <div class="flex space-x-2">
+                                    <input type="text" id="promoInput" placeholder="Enter code" class="input-field flex-grow">
+                                    <button class="btn-accent px-4 py-2 text-sm">Apply</button>
+                                </div>
+                            </div>
+
+                            <!-- Proceed Button -->
+                            <button id="proceedBtn" class="btn-primary w-full text-lg py-4">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1cfbf48dc-1767987389988.png" alt="Secure payment icon" class="w-5 h-5 mr-2">
+                                Proceed to Payment
+                            </button>
+
+                            <!-- Trust Indicators -->
+                            <div class="mt-4 pt-4 border-t border-border">
+                                <div class="flex items-center justify-center space-x-4 text-xs text-text-secondary">
+                                    <div class="flex items-center space-x-1">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1ddbb1fd5-1767987390874.png" alt="Secure payment badge" class="w-4 h-4">
+                                        <span>Secure Payment</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1">
+                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1ac91179b-1767987401236.png" alt="Easy cancellation badge" class="w-4 h-4">
+                                        <span>Easy Cancellation</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- WhatsApp Confirmation -->
+                        <div class="card bg-accent/5 border-2 border-accent/20">
+                            <div class="flex items-start space-x-3">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_12ff710ca-1767987390096.png" alt="WhatsApp confirmation icon" class="w-6 h-6 flex-shrink-0 mt-1">
+                                <div>
+                                    <h4 class="font-semibold text-secondary mb-1">Instant WhatsApp Confirmation</h4>
+                                    <p class="text-body-sm text-text-secondary">Get booking details, beautician info, and real-time updates on WhatsApp</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Safety Protocols -->
+                        <div class="card">
+                            <h4 class="font-semibold text-secondary mb-3 flex items-center space-x-2">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_134c388f3-1767987401228.png" alt="Safety protocols icon" class="w-5 h-5">
+                                <span>Safety Protocols</span>
+                            </h4>
+                            <ul class="space-y-2 text-body-sm text-text-secondary">
+                                <li class="flex items-start space-x-2">
+                                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_14252da3a-1767443377912.png" alt="Verified check icon" class="w-4 h-4 flex-shrink-0 mt-0.5">
+                                    <span>Certified & trained beauticians</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_14252da3a-1767443377912.png" alt="Verified check icon" class="w-4 h-4 flex-shrink-0 mt-0.5">
+                                    <span>100% sanitized equipment</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_14252da3a-1767443377912.png" alt="Verified check icon" class="w-4 h-4 flex-shrink-0 mt-0.5">
+                                    <span>Premium quality products</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_14252da3a-1767443377912.png" alt="Verified check icon" class="w-4 h-4 flex-shrink-0 mt-0.5">
+                                    <span>Contactless payment options</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Transformations -->
+    <section class="section-padding bg-white">
+        <div class="container-custom">
+            <div class="text-center mb-12">
+                <h2 class="text-display-2 text-secondary mb-4">Real Customer Transformations</h2>
+                <p class="text-body-lg text-text-secondary max-w-2xl mx-auto">
+                    See the stunning results our expert beauticians deliver at your doorstep
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Transformation 1 -->
+                <div class="card group cursor-pointer">
+                    <div class="relative aspect-square overflow-hidden rounded-lg mb-4">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_120659458-1766620388332.png" 
+                             alt="Before and after facial treatment showing radiant glowing skin transformation" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                             onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;">
+                        <div class="absolute top-4 left-4 bg-accent text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            Facial Treatment
+                        </div>
+                    </div>
+                    <h4 class="text-heading-3 text-secondary mb-2">Radiant Glow Facial</h4>
+                    <p class="text-body-sm text-text-secondary mb-3">Priya M. - Mumbai</p>
+                    <div class="flex items-center space-x-1 mb-3">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1ae445608-1764905966114.png" alt="5 star rating" class="w-4 h-4">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1ae445608-1764905966114.png" alt="5 star rating" class="w-4 h-4">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1ae445608-1764905966114.png" alt="5 star rating" class="w-4 h-4">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1ae445608-1764905966114.png" alt="5 star rating" class="w-4 h-4">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1ae445608-1764905966114.png" alt="5 star rating" class="w-4 h-4">
+                    </div>
+                    <p class="text-body-sm text-text-secondary italic">"My skin has never looked better!"</p>
+                </div>
+
+                <!-- Transformation 2 -->
+                <div class="card group cursor-pointer">
+                    <div class="relative aspect-square overflow-hidden rounded-lg mb-4">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1ddbaa0cd-1764706399916.png" 
+                             alt="Before and after lash extension showing dramatic eye enhancement" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                             onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;">
+                        <div class="absolute top-4 left-4 bg-accent text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            Lash Extensions
+                        </div>
+                    </div>
+                    <h4 class="text-heading-3 text-secondary mb-2">Volume Lash Extensions</h4>
+                    <p class="text-body-sm text-text-secondary mb-3">Anjali K. - Delhi</p>
+                    <div class="flex items-center space-x-1 mb-3">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1ae445608-1764905966114.png" alt="5 star rating" class="w-4 h-4">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1ae445608-1764905966114.png" alt="5 star rating" class="w-4 h-4">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1ae445608-1764905966114.png" alt="5 star rating" class="w-4 h-4">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1ae445608-1764905966114.png" alt="5 star rating" class="w-4 h-4">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1ae445608-1764905966114.png" alt="5 star rating" class="w-4 h-4">
+                    </div>
+                    <p class="text-body-sm text-text-secondary italic">"Absolutely stunning results!"</p>
+                </div>
+
+                <!-- Transformation 3 -->
+                <div class="card group cursor-pointer">
+                    <div class="relative aspect-square overflow-hidden rounded-lg mb-4">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1934b1ff0-1766841778074.png" 
+                             alt="Before and after bridal makeup showing elegant wedding look transformation" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                             onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;">
+                        <div class="absolute top-4 left-4 bg-accent text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            Bridal Makeup
+                        </div>
+                    </div>
+                    <h4 class="text-heading-3 text-secondary mb-2">Bridal Glam Package</h4>
+                    <p class="text-body-sm text-text-secondary mb-3">Neha S. - Bangalore</p>
+                    <div class="flex items-center space-x-1 mb-3">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1ae445608-1764905966114.png" alt="5 star rating" class="w-4 h-4">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1ae445608-1764905966114.png" alt="5 star rating" class="w-4 h-4">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1ae445608-1764905966114.png" alt="5 star rating" class="w-4 h-4">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1ae445608-1764905966114.png" alt="5 star rating" class="w-4 h-4">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1ae445608-1764905966114.png" alt="5 star rating" class="w-4 h-4">
+                    </div>
+                    <p class="text-body-sm text-text-secondary italic">"Perfect for my wedding day!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary text-white py-12">
+        <div class="container-custom">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- Brand Column -->
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_14acbbdbe-1767987392435.png" 
+                             alt="GlowOnCall footer logo" 
+                             class="h-10 w-10 object-cover rounded-full"
+                             onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;">
+                        <span class="font-playfair text-xl font-bold">GlowOnCall</span>
+                    </div>
+                    <p class="text-white/70 text-sm mb-4">Professional beauty, personal space. Your glow, our expertise, your comfort.</p>
+                    <div class="flex space-x-4">
+                        <a href="javascript:void(0)" class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition-colors duration-300">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1b9a5f070-1766967796860.png" alt="Facebook social link" class="w-4 h-4">
+                        </a>
+                        <a href="javascript:void(0)" class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition-colors duration-300">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1c4de2559-1764678949635.png" alt="Instagram social link" class="w-4 h-4">
+                        </a>
+                        <a href="javascript:void(0)" class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition-colors duration-300">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1cdcf5959-1767195262423.png" alt="Twitter social link" class="w-4 h-4">
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="homepage.html" class="text-white/70 hover:text-accent transition-colors duration-300">Home</a></li>
+                        <li><a href="services.html" class="text-white/70 hover:text-accent transition-colors duration-300">Services</a></li>
+                        <li><a href="cart.html" class="text-white/70 hover:text-accent transition-colors duration-300">Cart</a></li>
+                        <li><a href="contact.html" class="text-white/70 hover:text-accent transition-colors duration-300">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Popular Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="services.html" class="text-white/70 hover:text-accent transition-colors duration-300">Facial Treatments</a></li>
+                        <li><a href="services.html" class="text-white/70 hover:text-accent transition-colors duration-300">Lash Extensions</a></li>
+                        <li><a href="services.html" class="text-white/70 hover:text-accent transition-colors duration-300">Eyebrow Styling</a></li>
+                        <li><a href="services.html" class="text-white/70 hover:text-accent transition-colors duration-300">Bridal Packages</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Contact Us</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start space-x-2">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_19794a246-1767085016252.png" alt="Phone icon" class="w-5 h-5 mt-0.5">
+                            <span class="text-white/70 text-sm">+91 98765 43210</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1175352d5-1767644430280.png" alt="Email icon" class="w-5 h-5 mt-0.5">
+                            <span class="text-white/70 text-sm">hello@glowoncall.com</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_11407ebac-1766822096581.png" alt="Location icon" class="w-5 h-5 mt-0.5">
+                            <span class="text-white/70 text-sm">Serving 12+ cities across India</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 text-center">
+                <p class="text-white/70 text-sm">© 2026 GlowOnCall. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Live Chat Button -->
+    <button id="liveChatBtn" class="fixed bottom-6 right-6 w-14 h-14 bg-accent hover:bg-accent-dark rounded-full shadow-modal flex items-center justify-center z-fixed transition-all duration-300 hover:scale-110">
+        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1f8a0bc58-1766811948246.png" alt="Live chat support" class="w-6 h-6">
+    </button>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Quantity Management
+        const quantityBtns = document.querySelectorAll('.quantity-btn');
+        quantityBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const action = btn.dataset.action;
+                const itemId = btn.dataset.item;
+                const display = document.querySelector(`.quantity-display[data-item="${itemId}"]`);
+                let currentQty = parseInt(display.textContent);
+
+                if (action === 'increase') {
+                    currentQty++;
+                } else if (action === 'decrease' && currentQty > 1) {
+                    currentQty--;
+                }
+
+                display.textContent = currentQty;
+                updateCartTotal();
+            });
+        });
+
+        // Remove Item
+        const removeItemBtns = document.querySelectorAll('.remove-item');
+        removeItemBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const itemId = btn.dataset.item;
+                const card = btn.closest('.card');
+                card.style.opacity = '0';
+                card.style.transform = 'translateX(-20px)';
+                setTimeout(() => {
+                    card.remove();
+                    updateCartTotal();
+                    updateCartBadge();
+                }, 300);
+            });
+        });
+
+        // Clear Cart
+        const clearCartBtn = document.getElementById('clearCartBtn');
+        clearCartBtn.addEventListener('click', () => {
+            if (confirm('Are you sure you want to clear your cart?')) {
+                const cartItems = document.querySelectorAll('.card.animate-fade-in-up');
+                cartItems.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateX(-20px)';
+                        setTimeout(() => item.remove(), 300);
+                    }, index * 100);
+                });
+                setTimeout(() => {
+                    updateCartBadge();
+                }, 500);
+            }
+        });
+
+        // Time Slot Selection
+        const timeSlots = document.querySelectorAll('.time-slot');
+        timeSlots.forEach(slot => {
+            slot.addEventListener('click', () => {
+                timeSlots.forEach(s => {
+                    s.classList.remove('border-accent', 'bg-accent/5', 'text-accent', 'font-semibold');
+                    s.classList.add('border-border', 'text-secondary', 'font-medium');
+                });
+                slot.classList.remove('border-border', 'text-secondary', 'font-medium');
+                slot.classList.add('border-accent', 'bg-accent/5', 'text-accent', 'font-semibold');
+            });
+        });
+
+        // Date Input Min Date
+        const dateInput = document.getElementById('dateInput');
+        const today = new Date();
+        today.setDate(today.getDate() + 1);
+        dateInput.min = today.toISOString().split('T')[0];
+
+        // Proceed to Payment
+        const proceedBtn = document.getElementById('proceedBtn');
+        proceedBtn.addEventListener('click', () => {
+            const location = document.getElementById('locationInput').value;
+            const date = document.getElementById('dateInput').value;
+            
+            if (!location) {
+                alert('Please enter your service location');
+                document.getElementById('locationInput').focus();
+                return;
+            }
+            
+            if (!date) {
+                alert('Please select your preferred date');
+                document.getElementById('dateInput').focus();
+                return;
+            }
+
+            // Simulate WhatsApp confirmation
+            const message = `New Booking Request:\n\nServices: 3 items\nTotal: ₹4,396\nAdvance: ₹1,319\nDate: ${date}\nLocation: ${location}`;
+            const whatsappUrl = `https://wa.me/919876543210?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+            
+            // Show success message
+            alert('Booking confirmed! You will receive WhatsApp confirmation shortly.');
+        });
+
+        // Live Chat Button
+        const liveChatBtn = document.getElementById('liveChatBtn');
+        liveChatBtn.addEventListener('click', () => {
+            window.open('https://wa.me/919876543210', '_blank');
+        });
+
+        // Update Cart Total
+        function updateCartTotal() {
+            // This would calculate actual totals in a real implementation
+            console.log('Cart total updated');
+        }
+
+        // Update Cart Badge
+        function updateCartBadge() {
+            const cartItems = document.querySelectorAll('.card.animate-fade-in-up').length;
+            const badge = document.getElementById('cartBadge');
+            badge.textContent = cartItems;
+            if (cartItems === 0) {
+                badge.style.display = 'none';
+            }
+        }
+
+        // Save to Local Storage
+        function saveCartToStorage() {
+            const cartData = {
+                items: [],
+                location: document.getElementById('locationInput').value,
+                date: document.getElementById('dateInput').value,
+                instructions: document.getElementById('instructionsInput').value
+            };
+            localStorage.setItem('glowoncall_cart', JSON.stringify(cartData));
+        }
+
+        // Load from Local Storage
+        function loadCartFromStorage() {
+            const savedCart = localStorage.getItem('glowoncall_cart');
+            if (savedCart) {
+                const cartData = JSON.parse(savedCart);
+                document.getElementById('locationInput').value = cartData.location || '';
+                document.getElementById('dateInput').value = cartData.date || '';
+                document.getElementById('instructionsInput').value = cartData.instructions || '';
+            }
+        }
+
+        // Auto-save on input change
+        document.getElementById('locationInput').addEventListener('input', saveCartToStorage);
+        document.getElementById('dateInput').addEventListener('change', saveCartToStorage);
+        document.getElementById('instructionsInput').addEventListener('input', saveCartToStorage);
+
+        // Load saved data on page load
+        window.addEventListener('load', loadCartFromStorage);
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>
