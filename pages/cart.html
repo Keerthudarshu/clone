@@ -171,7 +171,7 @@
                 <div class="lg:col-span-1">
                     <div class="sticky top-24 space-y-6">
                         <!-- Booking Details Card -->
-                        <div class="card">
+                        <div class="card p-5 md:p-6">
                             <h3 class="text-heading-2 text-secondary mb-4">Booking Details</h3>
 
                             <!-- Customer Details -->
@@ -272,7 +272,7 @@
                         </div>
 
                         <!-- Price Summary Card -->
-                        <div class="card">
+                        <div class="card p-5 md:p-6">
                             <h3 class="text-heading-2 text-secondary mb-4">Price Summary</h3>
 
                             <div class="space-y-3 mb-4">
@@ -339,7 +339,7 @@
                         </div>
 
                         <!-- WhatsApp Confirmation -->
-                        <div class="card bg-accent/5 border-2 border-accent/20">
+                        <div class="card bg-accent/5 border-2 border-accent/20 p-5 md:p-6">
                             <div class="flex items-start space-x-3">
                                 <img src="https://img.rocket.new/generatedImages/rocket_gen_img_12ff710ca-1767987390096.png"
                                     alt="WhatsApp confirmation icon" class="w-6 h-6 flex-shrink-0 mt-1">
@@ -352,7 +352,7 @@
                         </div>
 
                         <!-- Safety Protocols -->
-                        <div class="card">
+                        <div class="card p-5 md:p-6">
                             <h4 class="font-semibold text-secondary mb-3 flex items-center space-x-2">
                                 <img src="https://img.rocket.new/generatedImages/rocket_gen_img_134c388f3-1767987401228.png"
                                     alt="Safety protocols icon" class="w-5 h-5">
@@ -642,43 +642,79 @@
             items.forEach((item, idx) => {
                 subtotal += (item.price || 0) * (item.quantity || 1);
                 const card = document.createElement('div');
-                card.className = 'card animate-fade-in-up';
+                card.className = 'card animate-fade-in-up p-0 md:p-6 overflow-hidden';
                 card.innerHTML = `
-                                    <div class="flex flex-col sm:flex-row gap-4">
-                                        <div class="relative w-full sm:w-32 h-32 rounded-lg overflow-hidden flex-shrink-0">
-                                            <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;">
-                                        </div>
-                                        <div class="flex-grow">
-                                            <div class="flex items-start justify-between mb-2">
-                                                <div>
-                                                    <h3 class="text-heading-2 text-secondary mb-1">${item.name}</h3>
-                                                    <p class="text-body-sm text-text-secondary">${item.description || ''}</p>
-                                                    <div class="flex items-center space-x-2 mt-2">
-                                                        <span class="text-body-sm text-text-secondary">${item.duration || ''} min</span>
-                                                    </div>
-                                                </div>
-                                                <button class="remove-item p-2 hover:bg-red-100 hover:text-red-600 rounded-lg transition-colors duration-300 text-gray-400 font-bold text-lg" data-idx="${idx}" title="Remove item">
-                                                    ×
-                                                </button>
-                                            </div>
-                                            <div class="flex items-center justify-between mt-4">
-                                                <div class="flex items-center space-x-3">
-                                                    <button class="quantity-btn w-8 h-8 rounded-lg border border-border hover:bg-surface flex items-center justify-center transition-colors duration-300" data-action="decrease" data-idx="${idx}">
-                                                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1b9b6eaeb-1767547004154.png" alt="Decrease quantity" class="w-4 h-4">
-                                                    </button>
-                                                    <span class="quantity-display font-semibold text-secondary" data-idx="${idx}">${item.quantity || 1}</span>
-                                                    <button class="quantity-btn w-8 h-8 rounded-lg border border-border hover:bg-surface flex items-center justify-center transition-colors duration-300" data-action="increase" data-idx="${idx}">
-                                                        <img src="https://images.unsplash.com/photo-1589556763333-ad818080f39e" alt="Increase quantity" class="w-4 h-4">
-                                                    </button>
-                                                </div>
-                                                <div class="text-right">
-                                                    <div class="text-heading-2 text-accent font-semibold">₹${item.price}</div>
-                                                    ${item.oldPrice ? `<div class="text-body-sm text-text-secondary line-through">₹${item.oldPrice}</div>` : ''}
-                                                </div>
-                                            </div>
-                                        </div>
+                    <!-- Desktop View -->
+                    <div class="hidden md:flex flex-row gap-4 p-6">
+                        <div class="relative w-32 h-32 rounded-lg overflow-hidden flex-shrink-0">
+                            <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;">
+                        </div>
+                        <div class="flex-grow">
+                            <div class="flex items-start justify-between mb-2">
+                                <div>
+                                    <h3 class="text-heading-2 text-secondary mb-1 font-semibold">${item.name}</h3>
+                                    <p class="text-body-sm text-text-secondary line-clamp-2">${item.description || ''}</p>
+                                    <div class="flex items-center space-x-2 mt-2">
+                                        <img src="https://api.iconify.design/heroicons/clock.svg?color=%237F8C8D" class="w-4 h-4">
+                                        <span class="text-xs text-text-secondary">${item.duration || ''} min</span>
                                     </div>
-                                `;
+                                </div>
+                                <button class="remove-item p-2 hover:bg-red-50 hover:text-red-500 rounded-lg transition-colors duration-300 text-gray-400 font-bold text-xl" data-idx="${idx}" title="Remove item">
+                                    ×
+                                </button>
+                            </div>
+                            <div class="flex items-center justify-between mt-4">
+                                <div class="flex items-center space-x-3">
+                                    <button class="quantity-btn w-8 h-8 rounded-lg border border-border hover:bg-surface flex items-center justify-center transition-all active:scale-95" data-action="decrease" data-idx="${idx}">
+                                        <span class="text-lg font-bold">−</span>
+                                    </button>
+                                    <span class="quantity-display font-bold text-secondary text-lg" data-idx="${idx}">${item.quantity || 1}</span>
+                                    <button class="quantity-btn w-8 h-8 rounded-lg border border-border hover:bg-surface flex items-center justify-center transition-all active:scale-95" data-action="increase" data-idx="${idx}">
+                                        <span class="text-lg font-bold">+</span>
+                                    </button>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-heading-2 text-accent font-bold">₹${item.price.toLocaleString('en-IN')}</div>
+                                    ${item.oldPrice ? `<div class="text-body-sm text-text-secondary line-through">₹${item.oldPrice.toLocaleString('en-IN')}</div>` : ''}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mobile List View -->
+                    <div class="md:hidden">
+                        <div class="service-list-item">
+                            <div class="content">
+                                <h3 class="text-base font-bold text-secondary mb-1 leading-tight">${item.name}</h3>
+                                <div class="flex items-center space-x-2 mb-1">
+                                    <div class="flex items-center bg-green-50 px-1.5 py-0.5 rounded text-[10px] font-bold text-green-700">
+                                        <img src="https://api.iconify.design/heroicons/star-solid.svg?color=%2315803d" class="w-2.5 h-2.5 mr-0.5">
+                                        ${item.rating || '4.8'} (${item.reviews || '2.5K'})
+                                    </div>
+                                </div>
+                                <div class="text-sm font-bold text-text-primary mb-1">₹${item.price.toLocaleString('en-IN')}</div>
+                                <div class="text-[11px] text-text-secondary mb-2 flex items-center">
+                                    <img src="https://api.iconify.design/heroicons/clock.svg?color=%237F8C8D" class="w-3 h-3 mr-1">
+                                    ${item.duration || ''} min
+                                </div>
+                                <button class="remove-item text-red-500 text-[11px] font-bold flex items-center" data-idx="${idx}">
+                                    <img src="https://api.iconify.design/heroicons/trash.svg?color=%23EF4444" class="w-3.5 h-3.5 mr-1">
+                                    Remove item
+                                </button>
+                            </div>
+                            <div class="image-container">
+                                <img src="${item.image}" alt="${item.name}" class="rounded-xl shadow-sm" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';">
+                                <div class="add-btn-container">
+                                    <div class="flex items-center justify-between w-full bg-white border border-[#6D28D9] shadow-md py-1 px-1.5 rounded-lg text-[#6D28D9] font-bold text-sm">
+                                        <button class="quantity-btn px-1 text-lg active:scale-125 transition-transform" data-action="decrease" data-idx="${idx}">−</button>
+                                        <span>${item.quantity || 1}</span>
+                                        <button class="quantity-btn px-1 text-lg active:scale-125 transition-transform" data-action="increase" data-idx="${idx}">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
                 container.appendChild(card);
             });
             // Example: discount ₹200 if subtotal > 2000, travel charges ₹99
